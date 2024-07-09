@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zeeshan's Portfolio</title>
+    <link rel="stylesheet" href="portfolio.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h1>Zeeshan's Portfolio</h1>
+      </div>
+      <nav>
+        <div class="burger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="banner">
+      <div class="carousel">
+        <img src="./images/horse.jpeg" alt="Banner Image 1" />
+        <img src="./images/castle.jpg" alt="Banner Image 2" />
+        <img src="./images/jump.jpeg" alt="Banner Image 3" />
+      </div>
+    </div>
+
+    <div class="container">
+      <section id="home">
+        <h2>Welcome</h2>
+        <p>
+          Welcome to my photography portfolio! Here you will find a selection of
+          my work. I hope you enjoy browsing through my photographs.
+        </p>
+      </section>
+
+      <section id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="gallery">
+          <img src="./images/steak.jpg" alt="Photo 1" class="enlargeable" />
+          <img src="./images/sushi.jpg" alt="Photo 2" class="enlargeable" />
+          <img
+            src="./images/florentine.jpg"
+            alt="Photo 3"
+            class="enlargeable"
+          />
+          <img src="./images/queen.jpg" alt="Photo 4" class="enlargeable" />
+          <img src="./images/group.jpg" alt="Photo 5" class="enlargeable" />
+          <img src="./images/kiss.jpg" alt="Photo 6" class="enlargeable" />
+          <img src="./images/splash.jpg" alt="Photo 7" class="enlargeable" />
+          <img src="./images/burst.jpg" alt="Photo 8" class="enlargeable" />
+          <img src="./images/duck2.jpg" alt="Photo 9" class="enlargeable" />
+          <img src="./images/mosquito.jpg" alt="Photo 10" class="enlargeable" />
+          <img src="./images/fly.jpg" alt="Photo 11" class="enlargeable" />
+          <img src="./images/insect.jpg" alt="Photo 12" class="enlargeable" />
+          <img src="./images/moon.jpg" alt="Photo 13" class="enlargeable" />
+          <img src="./images/prag.jpg" alt="Photo 14" class="enlargeable" />
+          <img src="./images/bubbles.jpg" alt="Photo 15" class="enlargeable" />
+          <img src="./images/chess.jpg" alt="Photo 16" class="enlargeable" />
+          <img src="./images/sisters.jpg" alt="Photo 17" class="enlargeable" />
+          <img src="./images/kid.jpg" alt="Photo 18" class="enlargeable" />
+          <img src="./images/leaves.jpg" alt="Photo 19" class="enlargeable" />
+          <img src="./images/green.jpg" alt="Photo 20" class="enlargeable" />
+          <img src="./images/tulips.jpg" alt="Photo 21" class="enlargeable" />
+        </div>
+      </section>
+
+      <section id="about">
+        <h2>About Me</h2>
+        <div class="gallery">
+          <img src="./images/dog.jpg" alt="Photo 4" class="enlargeable" />
+        </div>
+        <p>
+          I am a passionate photographer with extensive experience using both
+          manual and digital cameras. My work spans various genres, from
+          landscape to portrait photography. I love capturing unique moments and
+          creating lasting memories for my clients. I bring a positive and
+          welcoming attitude to multicultural guests. I thrive in social
+          settings and am highly team-oriented, making me an excellent fit for
+          environments that require collaboration and interaction with diverse
+          groups. My proficiency in English further enhances my ability to
+          communicate effectively with guests from various backgrounds.
+        </p>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>
+          If you have any questions or would like to work with me, feel free to
+          reach out.
+        </p>
+        <p>Email: zeeshanhyf@gmail.com</p>
+        <p>Phone: +45 71608007 / +49 15213227750</p>
+      </section>
+    </div>
+
+    <footer>&copy; Zeeshan Haider 2024. All Rights Reserved.</footer>
+
+    <div class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modalImg" />
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const burger = document.querySelector(".burger");
+        const nav = document.querySelector("nav ul");
+
+        burger.addEventListener("click", function () {
+          nav.classList.toggle("nav-active");
+        });
+
+        const images = document.querySelectorAll(".enlargeable");
+        const modal = document.querySelector(".modal");
+        const modalImg = document.getElementById("modalImg");
+        const closeModal = document.querySelector(".close");
+
+        images.forEach((image) => {
+          image.addEventListener("click", function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+          });
+        });
+
+        closeModal.addEventListener("click", function () {
+          modal.style.display = "none";
+        });
+
+        window.addEventListener("click", function (e) {
+          if (e.target == modal) {
+            modal.style.display = "none";
+          }
+        });
+
+        let carouselIndex = 0;
+        const carouselImages = document.querySelectorAll(".carousel img");
+        const carouselLength = carouselImages.length;
+
+        function showCarouselImage(index) {
+          carouselImages.forEach((img, i) => {
+            img.style.display = i === index ? "block" : "none";
+          });
+        }
+
+        function nextCarouselImage() {
+          carouselIndex = (carouselIndex + 1) % carouselLength;
+          showCarouselImage(carouselIndex);
+        }
+
+        showCarouselImage(carouselIndex);
+        setInterval(nextCarouselImage, 3000);
+      });
+    </script>
+  </body>
+</html>
